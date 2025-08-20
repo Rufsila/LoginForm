@@ -1,12 +1,11 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
-import { LoginFormAdapterService } from '../services/adapter/login-form-adapter.service';
 import { AuthService } from '../services/api/auth.service';
-import { LoginStateService } from '../services/state/login-state.service';
-import { LoginHelperService } from '../services/helper/login-helper.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Router } from '@angular/router';
+import { FormsAdapterService } from '../services/adapter/forms-adapter.service';
+import { CommonHelperService } from '../services/helper/common-helper.service';
+import { CommonStateService } from '../services/state/common-state.service';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +20,14 @@ export class LoginComponent implements OnInit {
   errorMsg = '';
   successMsg = '';
 
-  private adapter = inject(LoginFormAdapterService);
+  private adapter = inject(FormsAdapterService);
   private api = inject(AuthService);
-  private state = inject(LoginStateService);
-  private helper = inject(LoginHelperService);
+  private state = inject(CommonStateService);
+  private helper = inject(CommonHelperService);
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.loginForm = this.adapter.buildForm(); // ✅ initialized after DI works
+    this.loginForm = this.adapter.buildLoginForm(); // ✅ initialized after DI works
   }
 
   onSubmit() {
@@ -58,7 +57,7 @@ export class LoginComponent implements OnInit {
         console.log('Logged in User:', username);
         console.log('Token:', res.token);
         console.log('Role:', res.role);
-        this.router.navigate(['/home/dashboard']);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.loading = false;

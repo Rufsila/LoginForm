@@ -1,0 +1,59 @@
+.traveller-form {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* two-column layout */
+  gap: 1.5rem;
+  /* space between items */
+}
+
+/* Make form fields stretch */
+mat-form-field {
+  width: 100%;
+}
+
+/* Address & Checkbox full width */
+mat-form-field:nth-child(8),
+mat-checkbox {
+  grid-column: span 2;
+}
+
+/* Submit button full width */
+button[type="submit"] {
+  grid-column: span 2;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .traveller-form {
+    grid-template-columns: 1fr;
+    /* single column */
+    padding: 1.2rem;
+  }
+
+  button[type="submit"] {
+    grid-column: span 1;
+  }
+
+  mat-checkbox {
+    grid-column: span 1;
+  }
+}
