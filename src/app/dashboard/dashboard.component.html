@@ -1,0 +1,27 @@
+<div class="dashboard">
+  <header class="header">
+    <h2 (click)="goToTravellerDetails()" class="nav-link">Navaneetha</h2>
+  </header>
+
+  <main>
+    <p>Welcome to the Dashboard!</p>
+
+    <!-- Display traveller details if available -->
+    <div *ngIf="traveller; else noData" class="traveller-card">
+      <h3>Traveller Details</h3>
+      <p><strong>First Name:</strong> {{ traveller.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ traveller.lastName }}</p>
+      <p><strong>Gender:</strong> {{ traveller.gender }}</p>
+      <p><strong>Date of Birth:</strong> {{ traveller.dob }}</p>
+      <p><strong>Email:</strong> {{ traveller.email }}</p>
+      <p><strong>Phone:</strong> {{ traveller.phone }}</p>
+      <p><strong>Passport No:</strong> {{ traveller.passportNo }}</p>
+      <p><strong>Nationality:</strong> {{ traveller.nationality }}</p>
+    </div>
+
+    <!-- Template to show if no traveller details exist -->
+    <ng-template #noData>
+      <p>No traveller details found. Click "Navaneetha" to add details.</p>
+    </ng-template>
+  </main>
+</div>
