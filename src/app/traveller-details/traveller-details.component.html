@@ -1,0 +1,52 @@
+<div class="traveller-container">
+  <h2>Traveller Details</h2>
+
+  <form [formGroup]="travellerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" formControlName="firstName" />
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastName" />
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <select formControlName="gender">
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" formControlName="dob" />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="text" formControlName="phone" />
+    </div>
+
+    <div class="form-group">
+      <label>Passport Number</label>
+      <input type="text" formControlName="passportNo" />
+    </div>
+
+    <div class="form-group">
+      <label>Nationality</label>
+      <input type="text" formControlName="nationality" />
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+</div>
+
