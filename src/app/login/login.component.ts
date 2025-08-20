@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { LoginFormAdapterService } from '../services/adapter/login-form-adapter.service';
 import { AuthService } from '../services/api/auth.service';
 import { LoginStateService } from '../services/state/login-state.service';
 import { LoginHelperService } from '../services/helper/login-helper.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,11 @@ export class LoginComponent implements OnInit {
   errorMsg = '';
   successMsg = '';
 
-  constructor(
-    private adapter: LoginFormAdapterService,
-    private api: AuthService,
-    private state: LoginStateService,
-    private helper: LoginHelperService
-  ) {}
+  private adapter = inject(LoginFormAdapterService);
+  private api = inject(AuthService);
+  private state = inject(LoginStateService);
+  private helper = inject(LoginHelperService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.loginForm = this.adapter.buildForm(); // ✅ initialized after DI works
@@ -54,9 +54,10 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.successMsg = 'Login successful ';
         this.state.setLoginStatus(true);
-            console.log('Logged in User:', username);
-            console.log('Token:', res.token);
-            console.log('Role:', res.role);
+        console.log('Logged in User:', username);
+        console.log('Token:', res.token);
+        console.log('Role:', res.role);
+        this.router.navigate(['/home/dashboard']);
       },
       error: (err) => {
         this.loading = false;

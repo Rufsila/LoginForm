@@ -1,0 +1,91 @@
+/* Container styling */
+.traveller-form {
+  max-width: 550px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  /* keep z-index low so overlay appears above */
+  z-index: 1;
+  overflow: visible;
+  /* allow dropdown to escape */
+}
+
+/* Material form fields full width */
+.traveller-form .mat-form-field {
+  width: 100%;
+}
+
+/* Input focus styling */
+.traveller-form .mat-form-field.mat-focused .mat-form-field-wrapper {
+  border-color: #ff6f61;
+  /* coral highlight */
+  box-shadow: 0 0 5px rgba(255, 111, 97, 0.3);
+}
+
+/* Hover effect */
+.traveller-form .mat-form-field:hover .mat-form-field-wrapper {
+  border-color: #ff8a75;
+}
+
+/* Checkbox styling */
+.traveller-form mat-checkbox {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Submit button styling */
+.traveller-form button[type="submit"] {
+  align-self: center;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  background: #ff6f61;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 111, 97, 0.4);
+}
+
+.traveller-form button[type="submit"]:hover {
+  background: #ff3b2f;
+  box-shadow: 0 6px 20px rgba(255, 59, 47, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Datepicker input cursor */
+.traveller-form input[matInput][type="date"] {
+  cursor: pointer;
+}
+
+/* mat-select panel styling */
+.mat-select-panel {
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000 !important;
+}
+
+/* mat-option hover styling */
+.mat-select-panel .mat-option:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .traveller-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .traveller-form button[type="submit"] {
+    width: 100%;
+  }
+}
