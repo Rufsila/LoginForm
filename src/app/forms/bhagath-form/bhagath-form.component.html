@@ -1,0 +1,63 @@
+<div class="form-container">
+    <h2>User Details Form</h2>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <!-- Username -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Username</mat-label>
+            <input matInput id="username" type="text" formControlName="username" placeholder="Enter username" />
+            <mat-error *ngIf="getError('username')">
+                {{ getError('username') }}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Mobile -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Mobile</mat-label>
+            <input matInput id="mobile" type="text" formControlName="mobile" placeholder="Enter mobile number" />
+            <mat-error *ngIf="getError('mobile')">
+                {{ getError('mobile') }}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Country -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Country</mat-label>
+            <mat-select id="country" formControlName="country">
+                <mat-option value="">Select Country</mat-option>
+                <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="getError('country')">
+                {{ getError('country') }}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Destination -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Destination</mat-label>
+            <mat-select id="destination" formControlName="destination">
+                <mat-option value="">Select Destination</mat-option>
+                <mat-option *ngFor="let d of destinations" [value]="d">{{ d }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="getError('destination')">
+                {{ getError('destination') }}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Travel Date -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Travel Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="travelDate" placeholder="Choose a date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="getError('travelDate')">
+                {{ getError('travelDate') }}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit">
+            Save
+        </button>
+    </form>
+</div>

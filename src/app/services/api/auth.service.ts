@@ -5,7 +5,7 @@ import { delay, of, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor() { }
 
   private users = [
     { username: 'admin', password: 'admin', role: 'Admin' },
@@ -27,5 +27,11 @@ export class AuthService {
     } else {
       return throwError(() => new Error('Invalid credentials'));
     }
+  }
+
+  submitTravellerDetails(data: any) {
+    console.log('API call with data:', data);
+    // Simulate API call
+    return of({ success: true }).pipe(delay(1000));
   }
 }
