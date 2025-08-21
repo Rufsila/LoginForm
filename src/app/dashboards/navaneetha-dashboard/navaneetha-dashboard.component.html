@@ -1,27 +1,73 @@
 <div class="dashboard">
-  <header class="header">
-    <h2 (click)="goToTravellerDetails()" class="nav-link">Navaneetha</h2>
-  </header>
+  <!-- Toolbar -->
+  <mat-toolbar color="primary" class="toolbar">
+    <span class="toolbar-title">Navaneetha's Dashboard</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="goToTravellerDetails()">
+      + Add Traveller
+    </button>
+  </mat-toolbar>
 
-  <main>
-    <p>Welcome to the Dashboard!</p>
+  <main class="content">
+    <h2 class="page-title">Welcome to the Dashboard!</h2>
 
-    <!-- Display traveller details if available -->
-    <div *ngIf="traveller; else noData" class="traveller-card">
-      <h3>Traveller Details</h3>
-      <p><strong>First Name:</strong> {{ traveller.firstName }}</p>
-      <p><strong>Last Name:</strong> {{ traveller.lastName }}</p>
-      <p><strong>Gender:</strong> {{ traveller.gender }}</p>
-      <p><strong>Date of Birth:</strong> {{ traveller.dob }}</p>
-      <p><strong>Email:</strong> {{ traveller.email }}</p>
-      <p><strong>Phone:</strong> {{ traveller.phone }}</p>
-      <p><strong>Passport No:</strong> {{ traveller.passportNo }}</p>
-      <p><strong>Nationality:</strong> {{ traveller.nationality }}</p>
-    </div>
+    <!-- Table for traveller details -->
+    <mat-card *ngIf="travellers.length > 0; else noData" class="traveller-card">
+      <mat-card-title>Traveller Details</mat-card-title>
+      <mat-card-content>
+        <table mat-table [dataSource]="travellers" class="mat-elevation-z2">
 
-    <!-- Template to show if no traveller details exist -->
+          <!-- Columns -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef> DOB </th>
+            <td mat-cell *matCellDef="let element">{{ element.dob | date }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="passportNo">
+            <th mat-header-cell *matHeaderCellDef> Passport No </th>
+            <td mat-cell *matCellDef="let element">{{ element.passportNo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nationality">
+            <th mat-header-cell *matHeaderCellDef> Nationality </th>
+            <td mat-cell *matCellDef="let element">{{ element.nationality }}</td>
+          </ng-container>
+
+          <!-- Header and Rows -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- No data -->
     <ng-template #noData>
-      <p>No traveller details found. Click "Navaneetha" to add details.</p>
+      <p>No traveller details found. Click "Add Traveller" to enter details.</p>
     </ng-template>
   </main>
 </div>
