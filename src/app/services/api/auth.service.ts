@@ -10,6 +10,7 @@ export class AuthService {
   private users = [
     { username: 'admin', password: 'admin', role: 'Admin' },
     { username: 'user1', password: 'pass123', role: 'User' },
+    { username: 'admin@mail.com', password: 'Admin@123', role: 'Admin' },
   ];
 
   login(username: string, password: string) {

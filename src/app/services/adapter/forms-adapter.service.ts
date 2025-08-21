@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormsAdapterService {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   /**
    * Build Login Form
@@ -32,6 +32,16 @@ export class FormsAdapterService {
       address: ['', Validators.required],
       travelDate: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue],
+    });
+  }
+
+  bhagathFormValidation(): FormGroup {
+    return this.fb.group({
+      username: ['', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      country: ['', Validators.required],
+      destination: ['', Validators.required],
+      travelDate: ['', Validators.required],
     });
   }
 }
