@@ -35,6 +35,19 @@ export class FormsAdapterService {
     });
   }
 
+  buildNavaneethaForm(): FormGroup {
+    return this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      gender: ['', Validators.required],
+      dob: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      passportNo: ['', Validators.required],
+      nationality: ['', Validators.required],
+    });
+  }
+
   bhagathFormValidation(): FormGroup {
     return this.fb.group({
       username: ['', Validators.required],
