@@ -1,0 +1,16 @@
+.dashboard-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 16px;
+}
+
+.user-card {
+    margin-top: 20px;
+    padding: 16px;
+}
+
+mat-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}

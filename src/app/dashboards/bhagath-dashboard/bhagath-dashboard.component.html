@@ -1,1 +1,25 @@
-<p>bhagath-dashboard works!</p>
+<div class="dashboard-container">
+    <h2>User Dashboard</h2>
+
+    <ng-container *ngIf="userDataList.length > 0; else noData">
+        <mat-card *ngFor="let user of userDataList; let i = index" class="user-card">
+            <mat-card-title>User {{ i + 1 }}</mat-card-title>
+            <mat-card-content>
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Mobile:</strong> {{ user.mobile }}</p>
+                <p><strong>Country:</strong> {{ user.country }}</p>
+                <p><strong>Destination:</strong> {{ user.destination }}</p>
+                <p><strong>Travel Date:</strong> {{ user.travelDate | date }}</p>
+            </mat-card-content>
+        </mat-card>
+        <button mat-raised-button color="warn" style="margin-top: 15px; margin-right: 350px;"
+            (click)="clearData()">Clear
+            All Data</button>
+        <button mat-raised-button color="success" style="margin-top: 15px;" routerLink="/forms/bhagath-form"> Add
+            new</button>
+    </ng-container>
+
+    <ng-template #noData>
+        <p>No user data found. Please fill the form first.</p>
+    </ng-template>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -30,12 +30,17 @@ export class CommonHelperService {
       return `${this.capitalize(controlName)} is required`;
     }
     if (control.errors['minlength']) {
-      return `${this.capitalize(controlName)} must be at least ${
-        control.errors['minlength'].requiredLength
-      } characters`;
+      return `${this.capitalize(controlName)} must be at least ${control.errors['minlength'].requiredLength
+        } characters`;
     }
 
     return 'Invalid input';
+  }
+
+  bhagathGetError(control: AbstractControl | null, controlName: string): string {
+    if (control?.hasError('required')) return `${controlName} is required`;
+    if (control?.hasError('pattern')) return `${controlName} is invalid`;
+    return '';
   }
 
   /**
@@ -63,5 +68,5 @@ export class CommonHelperService {
   //     }
   //   });
   // }
-  
+
 }

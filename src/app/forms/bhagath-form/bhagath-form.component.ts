@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -8,9 +8,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonStateService } from '../../services/state/common-state.service';
+import { FormsAdapterService } from '../../services/adapter/forms-adapter.service';
+import { CommonHelperService } from '../../services/helper/common-helper.service';
 
 @Component({
   selector: 'app-bhagath-form',
+  standalone: true,
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -27,17 +31,19 @@ import { MatNativeDateModule } from '@angular/material/core';
 export class BhagathFormComponent implements OnInit {
   userForm!: FormGroup;
 
-
   countries = ['India', 'USA', 'UK', 'Australia'];
   destinations = ['Paris', 'New York', 'Tokyo', 'Dubai'];
 
-  constructor(
-    private router: Router
-  ) {}
+
+  private router = inject(Router)
+  private state = inject(CommonStateService)
+  private adapter = inject(FormsAdapterService)
+  private helper = inject(CommonHelperService)
+
 
   ngOnInit(): void {
+    this.userForm = this.adapter.bhagathFormValidation();
   }
-
 
   onSubmit() {
     if (this.userForm.invalid) {
@@ -45,14 +51,13 @@ export class BhagathFormComponent implements OnInit {
       return;
     }
 
-    localStorage.setItem('userData', JSON.stringify(this.userForm.value));
-    this.router.navigate(['/bhagath-db']);
+    this.state.bhagathSaveUserData(this.userForm.value);
+
+    this.router.navigate(['/bhagathDb']);
+
   }
 
   getError(controlName: string): string {
-    const control = this.userForm.get(controlName);
-    if (control?.hasError('required')) return `${controlName} is required`;
-    if (control?.hasError('pattern')) return `${controlName} is invalid`;
-    return '';
+    return this.helper.bhagathGetError(this.userForm.get(controlName), controlName);
   }
 }
