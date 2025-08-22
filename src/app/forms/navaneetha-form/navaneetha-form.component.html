@@ -2,17 +2,26 @@
   <h2>Traveller Details</h2>
 
   <form [formGroup]="travellerForm" (ngSubmit)="onSubmit()">
-
     <!-- First Name -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>First Name</mat-label>
-      <input matInput type="text" formControlName="firstName" placeholder="Enter first name" />
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        placeholder="Enter first name"
+      />
     </mat-form-field>
 
     <!-- Last Name -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Last Name</mat-label>
-      <input matInput type="text" formControlName="lastName" placeholder="Enter last name" />
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        placeholder="Enter last name"
+      />
     </mat-form-field>
 
     <!-- Gender -->
@@ -28,7 +37,12 @@
     <!-- Date of Birth -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Choose a date" />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="dob"
+        placeholder="Choose a date"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -36,25 +50,53 @@
     <!-- Email -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" placeholder="Enter email" />
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="Enter email"
+      />
     </mat-form-field>
 
     <!-- Phone -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Phone</mat-label>
-      <input matInput type="text" formControlName="phone" placeholder="Enter phone number" />
+      <input
+        matInput
+        type="text"
+        formControlName="phone"
+        placeholder="Enter phone number"
+      />
     </mat-form-field>
 
     <!-- Passport Number -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Passport Number</mat-label>
-      <input matInput type="text" formControlName="passportNo" placeholder="Enter passport number" />
+      <input
+        matInput
+        type="text"
+        formControlName="passportNo"
+        placeholder="Enter passport number"
+      />
     </mat-form-field>
 
     <!-- Nationality -->
-    <mat-form-field appearance="fill" class="full-width">
+    <!-- <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nationality</mat-label>
       <input matInput type="text" formControlName="nationality" placeholder="Enter nationality" />
+    </mat-form-field> -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nationality</mat-label>
+      <mat-select
+        formControlName="nationality"
+        placeholder="Select nationality"
+      >
+        <mat-option value="india">India</mat-option>
+        <mat-option value="usa">United States</mat-option>
+        <mat-option value="uk">United Kingdom</mat-option>
+        <mat-option value="canada">Canada</mat-option>
+        <mat-option value="australia">Australia</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <!-- Submit Button -->
